@@ -6,8 +6,6 @@ const eraser = document.querySelector('.eraser')
 const hideGrid = document.querySelector('.hideGrid')
 const showGrid = document.querySelector('.showGrid')
 
-
-
 const smallCanvas = document.querySelector('.smallBtn')
 const mediumCanvas = document.querySelector('.mediumBtn')
 const largeCanvas = document.querySelector('.largeBtn')
@@ -24,7 +22,6 @@ function start(){
 
 smallCanvas.addEventListener('click', function(){
   makeRows(16,16);
-  start();
 })
 mediumCanvas.addEventListener('click',function(){
   makeRows(22,22);
@@ -46,7 +43,8 @@ function makeRows(rows, cols) {
   container.style.setProperty('--grid-cols', cols);
   for (c = 0; c < (rows * cols); c++) {
     let cell = document.createElement("div");
-    container.appendChild(cell).className = "grid-item";
+    cell.classList.add('grid-item')
+    container.append(cell)//.className = "grid-item";
   };
 };
 
@@ -62,6 +60,7 @@ function removeRows(){
 const gridItems = document.querySelectorAll('.grid-item');
 
   function eraseAll() {
+    const gridItems = document.querySelectorAll('.grid-item');
     gridItems.forEach((item) => {
       item.style.backgroundColor = 'white';
       item.style.opacity = '1';
@@ -80,6 +79,7 @@ color.oninput = (e) => setCurrentColor(e.target.value)
 
 
 function draw(){
+  const gridItems = document.querySelectorAll('.grid-item');
   gridItems.forEach(item => item.addEventListener
     ('mousedown', function() {
     item.style.background = currentColor;
@@ -94,6 +94,7 @@ function draw(){
 }
 
 function drawColor(){
+  const gridItems = document.querySelectorAll('.grid-item');
   gridItems.forEach(item => item.addEventListener
     ('click', function() {
       const randomColor = Math.floor(Math.random()*16777215).toString(16);
@@ -110,6 +111,7 @@ function drawColor(){
 }
 
 function erase(){
+  const gridItems = document.querySelectorAll('.grid-item');
   gridItems.forEach(item => item.addEventListener
     ('click', function() {
     item.style.background = 'white';
@@ -124,12 +126,14 @@ function erase(){
 }
 
 function removeGrid(){
+  const gridItems = document.querySelectorAll('.grid-item');
   gridItems.forEach((item) => {
     item.style.border = '0px solid black';
   });
 }
 
 function show(){
+  const gridItems = document.querySelectorAll('.grid-item');
   gridItems.forEach((item) => {
     item.style.border = '0.1px solid black';
   });
